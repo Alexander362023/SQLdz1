@@ -21,29 +21,40 @@ with conn.cursor() as cur:
             'CREATE TABLE if not exists телефон(id SERIAL PRIMARY KEY, \
             телефон integer UNIQUE NOT null, \
             Клиенты integer references Клиенты(id));')
+        conn.commit()        
+    DS1()  
 
-        conn.commit()
-DS1()  
-        # cur.close('')
-'''закрывает подключение'''
-
-conn.close()
-
-def DS2():
+    def DS2():
         cur.execute(             
             'INSERT INTO Клиенты(Имя, Фамилия) VALUES('', '');')
         conn.commit()
-DS2()
+    DS2()
 
-def DS3():
-    cur.execute(             
-        'INSERT INTO телефон(телефон) VALUES('');')
-    conn.commit() 
-DS3()
+    def DS3():
+        cur.execute(             
+            'INSERT INTO телефон(телефон) VALUES('');')
+        conn.commit() 
+    DS3()
 
-def DS4():
-    cur.execute('UPDATE Клиенты SET Имя=%s, Фамилия=%s WHERE id=%s;', ('', '', id))
-    cur.execute('SELECT * FROM Клиенты;')
-    print(cur.fetchall())  # запрос данных автоматически зафиксирует изменения    
-DS4()
+    def DS4():
+        cur.execute('UPDATE Клиенты SET Имя=%s, Фамилия=%s WHERE id=%s;', ('', '', id))
+        cur.execute('SELECT * FROM Клиенты;')
+        print(cur.fetchall())  # запрос данных автоматически зафиксирует изменения    
+    DS4()
 
+    '''закрывает подключение'''
+
+
+    def DS5():
+        cur.execute('DROP FROM телефон WHERE телефон=%s;', ())  
+        cur.execute('SELECT * FROM телефон;')
+        print(cur.fetchall())
+    DS5()
+
+    def DS6():
+        cur.execute('DROP FROM Клиенты WHERE Имя=%s, Фамиля=%s;', (), ())  
+        cur.execute('SELECT * FROM телефон;')
+        print(cur.fetchall())
+    DS6()    
+conn.close() 
+    
